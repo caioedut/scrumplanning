@@ -12,6 +12,7 @@ https://play.google.com/store/apps/details?id=com.caioedut.scrumplanning
 ## How To ##
 ### Dependencies ###
 ```console
+$ npm install -g cordova
 $ npm install
 $ cordova platform add android
 ```
