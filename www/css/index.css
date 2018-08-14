@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(../font/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+form {
+    margin: 0;
+}
+
+.logo .md-icon {
+    font-size: 80px;
+    height: 80px;
+    width: 80px;
+}
+
+.layout-header .btn {
+    transition: none;
+}
+
+#newCard {
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+/*CARDS*/
+.card-item {
+    position: relative;
+    font-size: 2rem;
+    padding-bottom: 150%;
+}
+
+#cardModal .card-item {
+    padding: 0;
+    font-size: 8rem;
+    text-align: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.card-bg {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 1);
+}
+
+.card-bg:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: inherit;
+    content: '';
+    opacity: .4;
+}
+
+.card-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.card-text {
+    font-size: 1.4em;
+}
+
+.card-description {
+    font-size: .4em;
+    word-wrap: break-word;
+}
+
+.card-emoji {
+    font-size: .6em;
+}
+
+/*FLIP*/
+#cardModal .dialog-content {
+    overflow: visible;
+}
+
+.flip-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 800px;
+}
+
+.flip-card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform .4s;
+}
+
+.flip-front,
+.flip-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    height: 100%;
+    outline: #fff solid thick;
+    outline-offset: -8px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.flip-front {
+    transform: rotateY(0);
+}
+
+.flip-back {
+    transform: rotateY(180deg);
+}
+
+.flip-active,
+.flip-active-force {
+    transform: rotateY(180deg) !important;
+}
