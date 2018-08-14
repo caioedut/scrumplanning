@@ -1,0 +1,127 @@
+<div class="bg-white">
+
+    <section class="pd-md">
+        <h2 class="headline">{{'SETTINGS.LANGUAGE.SUBHEADER_LANGUAGE' | translate}}</h2>
+        <div class="dropdown xs-col-6 sm-col-4 md-col-3 lg-col-2 xl-col-1">
+            <div class="input input-{{color}}-6 link" data-toggle="dropdown">
+                <div class="grid grid-middle">
+                    <div class="grid-col col-fill">
+                        {{langs[lang]}}
+                    </div>
+                    <div class="grid-col">
+                        <i class="md-icon">keyboard_arrow_down</i>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown-body xs-col-12 absolute top left">
+                <ul class="menu set-block">
+                    <li ng-repeat="(key, label) in langs">
+                        <a class="{{key == lang ? 'bg-' + color + '-6' : ''}}" ng-click="setLanguage(key)" data-toggle="dropdown">
+                            {{label}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider-horizontal mg-top mg-bottom"></div>
+
+    <section class="pd-md">
+        <h2 class="headline">{{'SETTINGS.FULLSCREEN.TITLE' | translate}}</h2>
+        <label class="grid grid-middle grid-nowrap">
+            <div class="grid-col col-fill">
+                <h3 class="subheader">{{'SETTINGS.FULLSCREEN.SUBHEADER_FULLSCREEN' | translate}}</h3>
+            </div>
+            <div class="grid-col">
+                <input class="input input-switch input-{{color}}-6 text-{{color}}-6" type="checkbox"
+                       ng-true-value="1"
+                       ng-false-value="0"
+                       ng-checked="fullscreen == 1"
+                       ng-click="setFullscreen(!fullscreen)"
+                />
+            </div>
+        </label>
+    </section>
+
+    <div class="divider-horizontal mg-top mg-bottom"></div>
+
+    <section class="pd-md">
+        <h2 class="headline">{{'SETTINGS.FACING.TITLE' | translate}}</h2>
+        <label class="grid grid-middle grid-nowrap">
+            <div class="grid-col col-fill">
+                <h3 class="subheader">{{'SETTINGS.FACING.SUBHEADER_FACING' | translate}}</h3>
+            </div>
+            <div class="grid-col">
+                <input class="input input-switch input-{{color}}-6 text-{{color}}-6" type="checkbox"
+                       ng-true-value="1"
+                       ng-false-value="0"
+                       ng-checked="frontfirst == 1"
+                       ng-click="setFrontFirst(!frontfirst)"
+                />
+            </div>
+        </label>
+    </section>
+
+    <div class="divider-horizontal mg-top mg-bottom"></div>
+
+    <section class="pd-md">
+        <h2 class="headline">{{'SETTINGS.BACKGROUND.TITLE' | translate}}</h2>
+        <h3 class="subheader">{{'SETTINGS.BACKGROUND.SUBHEADER_COLOR' | translate}}</h3>
+        <div class="grid grid-gutter-xs">
+            <a class="grid-col xs-col-3 sm-col-3 md-col-2 lg-col-1 waves waves-overflow" ng-repeat="item in colors" ng-click="setBackgroundColor(item)">
+                <div class="bg-{{item}}-6 media-container-lg">
+                    <div class="flex flex-center" ng-if="item == color">
+                        <i class="md-icon md-icon-xl">check</i>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="divider-horizontal mg-top mg-bottom"></div>
+
+    <section class="pd-md">
+        <h2 class="headline">{{'SETTINGS.IMAGE.TITLE' | translate}}</h2>
+        <div class="xs-hidden sm-hidden md-hidden lg-hidden xl-hidden">
+            <input id="backgroundImage" class="input" type="file" accept="image/*" onchange="angular.element(this).scope().setBackgroundImage(this.files[0]); this.value = null;"/>
+        </div>
+        <div>
+            <label class="btn btn-raised waves bg-{{color}}-6" for="backgroundImage">
+                {{'SETTINGS.IMAGE.BUTTON_ADD' | translate}}
+            </label>
+            <button class="btn btn-raised waves waves-dark" ng-if="backgroundImage" ng-click="removeBackgroundImage()">
+                {{'SETTINGS.IMAGE.BUTTON_REMOVE' | translate}}
+            </button>
+        </div>
+        <div class="mg-top" ng-if="backgroundImage">
+            <img class="img-fluid" ng-src="{{backgroundImage}}" alt="" style="max-height: 240px"/>
+        </div>
+    </section>
+
+    <div class="divider-horizontal mg-top mg-bottom"></div>
+
+    <section class="pd-md">
+        <h2 class="headline">{{'SETTINGS.RESET.TITLE' | translate}}</h2>
+        <button class="btn btn-raised waves waves-dark" type="button" data-toggle="dialog" data-target="#confirmReset">
+            {{'SETTINGS.RESET.BUTTON_RESET' | translate}}
+        </button>
+        <div id="confirmReset" class="dialog">
+            <div class="dialog-header">
+                <h1 class="title">{{'SETTINGS.RESET.TITLE' | translate}}</h1>
+            </div>
+            <div class="dialog-body">
+                {{'SETTINGS.RESET.DIALOG_CONFIRM' | translate}}
+            </div>
+            <div class="dialog-footer">
+                <button class="btn btn-flat bg-red-6" type="button" data-toggle="dialog" ng-click="defaultSettings(true)">
+                    {{'SETTINGS.RESET.BUTTON_CONFIRM' | translate}}
+                </button>
+                <button class="btn btn-flat" type="button" data-toggle="dialog">
+                    {{'SETTINGS.RESET.BUTTON_CANCEL' | translate}}
+                </button>
+            </div>
+        </div>
+    </section>
+
+</div>

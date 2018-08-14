@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"/>-->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
+
+    <title>Scrum Planning</title>
+
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+
+    <!-- Libs - CSS -->
+    <link rel="stylesheet" href="lib/cematerial/css/cematerial.min.css"/>
+</head>
+<body class="invisible no-select" ng-controller="mainCtrl">
+
+<div class="layout">
+    <aside class="layout-sidebar">
+        <div class="flex">
+            <div class="flex-header">
+                <div class="pd-md bg-{{color}}-6">
+                    <div class="logo mg-top-sm">
+                        <i class="md-icon md-icon-xl">local_cafe</i>
+                    </div>
+                    <h1 class="body-2 no-margin">
+                        Scrum Planning
+                    </h1>
+                    <a class="text-sm" href="http://github.com/caioedut/" target="caioedut">
+                        github.com/caioedut
+                    </a>
+                </div>
+            </div>
+            <div class="flex-body">
+                <nav class="layout-nav">
+                    <div ng-repeat="nav in navs">
+                        <a class="waves waves-dark {{nav.url == page.menu ? 'bg-' + color + '-0 text-' + color + '-6' : ''}}"
+                           data-toggle="sidebar"
+                           ui-sref="{{nav.sref}}"
+                           ng-if="nav.sref"
+                        >
+                            <i class="md-icon" ng-if="nav.icon">{{nav.icon}}</i>
+                            {{nav.name | translate}}
+                        </a>
+                        <div class="divider-horizontal" ng-if="!nav"></div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </aside>
+    <header class="layout-header bg-{{color}}-6 toolbar">
+        <button class="btn btn-icon btn-circle bg-{{color}}-6 waves layout-toggler" data-toggle="sidebar">
+            <i class="md-icon">menu</i>
+        </button>
+        <h1 class="layout-title mg-left-md">
+            {{page.title | translate}}
+        </h1>
+        <a class="btn btn-icon btn-circle bg-{{color}}-6 waves col-right" href="market://details?id=com.caioedut.scrumplanning">
+            <i class="md-icon">star_outline</i>
+        </a>
+    </header>
+    <main class="layout-body" ui-view></main>
+</div>
+
+<!-- Libs - JS -->
+<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="lib/angular/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="lib/angular/angular-translate.min.js"></script>
+<script type="text/javascript" src="lib/cematerial/js/cematerial.min.js"></script>
+
+<!-- Main JS -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/config/appCfg.js"></script>
+<script type="text/javascript" src="js/config/routeCfg.js"></script>
+<script type="text/javascript" src="js/config/langConfig.js"></script>
+
+<!-- Controllers -->
+<script type="text/javascript" src="page/main/main.js"></script>
+<script type="text/javascript" src="page/home/home.js"></script>
+<script type="text/javascript" src="page/cards/cards.js"></script>
+<script type="text/javascript" src="page/settings/settings.js"></script>
+<script type="text/javascript" src="page/donate/donate.js"></script>
+
+</body>
+</html>

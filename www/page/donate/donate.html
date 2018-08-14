@@ -1,0 +1,48 @@
+<section class="mg-sm pd-md bg-white raised-xs">
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_donations"/>
+        <input type="hidden" name="business" value="caioedut@gmail.com"/>
+        <input type="hidden" name="item_name" value="{{'DONATE.TITLE' | translate}}"/>
+        <input type="hidden" name="currency_code" value="{{currency}}"/>
+
+        <div class="grid grid-gutter">
+            <div class="grid-col xs-col-5 sm-col-3 md-col-2 lg-col-2 xl-col-1">
+                <span class="label-text">{{'DONATE.INPUT_CURRENCY' | translate}}</span>
+                <div class="dropdown dropdown-block">
+                    <div class="input input-{{color}}-6 link" data-toggle="dropdown">
+                        <div class="grid grid-middle">
+                            <div class="grid-col col-fill">
+                                {{currencies[currency]}}
+                            </div>
+                            <div class="grid-col">
+                                <i class="md-icon">keyboard_arrow_down</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-body xs-col-12 absolute top left">
+                        <ul class="menu set-block">
+                            <li ng-repeat="(key, label) in currencies">
+                                <a class="{{key == currency ? 'bg-' + color + '-6' : ''}}" ng-click="setCurrency(key)" data-toggle="dropdown">
+                                    {{label}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-col col-fill">
+                <label class="label label-float label-active label-{{color}}-6">
+                    <span class="label-text">{{'DONATE.INPUT_AMOUNT' | translate}}</span>
+                    <input class="input input-{{color}}-6" type="number" name="amount" value="10.00" min="3" max="9999" step="any" required/>
+                </label>
+            </div>
+            <div class="grid-col xs-col-12">
+                <button class="btn btn-block btn-xl raised-md waves bg-{{color}}-6" type="submit">
+                    {{'DONATE.BUTTON_DONATE' | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+
+</section>

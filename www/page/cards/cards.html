@@ -1,0 +1,123 @@
+<section class="pd-md" ng-if="cards.length">
+    <div class="grid grid-bottom grid-nowrap">
+        <div class="grid-col col-fill">
+            <label class="label label-float label-{{color}}-6 {{page.description ? 'label-active' : ''}}">
+                <span class="label-text">{{'CARDS.INPUT_DESCRIPTION' | translate}}</span>
+                <input id="description" class="input input-{{color}}-6-f" type="text" maxlength="80" ng-model="page.description" ng-change="setDescription(page.description)"/>
+            </label>
+        </div>
+        <div class="grid-col" ng-if="page.description">
+            <label class="btn btn-icon btn-circle text-{{color}}-6 bg-{{color}}-0-h" for="description" ng-click="setDescription('')">
+                <i class="md-icon">close</i>
+            </label>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="grid grid-gutter-sm xs-text-center">
+        <div class="grid-col xs-col-4 sm-col-3 md-col-2 lg-col-1 relative" ng-repeat="card in cards">
+            <a class="card card-item bg-{{color}}-6" ng-click="openCard(card)" ng-class="{'card-bg': backgroundImage}">
+                <div class="card-content">
+                    <div class="card-text">
+                        {{card}}
+                    </div>
+                    <div class="card-description text-{{color}}-1">
+                        {{page.description}}
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown absolute top right mg-sm bg-{{color}}-6" ng-if="customCards">
+                <button class="btn btn-icon btn-circle text-inherit" type="button" data-toggle="dropdown">
+                    <i class="md-icon">more_vert</i>
+                </button>
+                <div class="dropdown-body top right">
+                    <div class="bg-white">
+                        <div class="grid grid-nowrap grid-center pd-xs">
+                            <a class="grid-col btn btn-circle text-black" data-toggle="dropdown" ng-click="moveCard($index, $index - 1)" ng-if="$index > 0">
+                                <i class="md-icon no-margin">chevron_left</i>
+                            </a>
+                            <a class="grid-col btn btn-circle text-black" data-toggle="dropdown" ng-click="moveCard($index, $index + 1)" ng-if="$index < cards.length - 1">
+                                <i class="md-icon no-margin">chevron_right</i>
+                            </a>
+                        </div>
+                        <div class="divider-horizontal mg-top-xs mg-bottom-xs"></div>
+                        <div class="pd-xs">
+                            <a class="grid-col btn btn-bl text-black" ng-click="removeCard(card)">
+                                <i class="md-icon no-margin">delete</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pd-lg" ng-if="customCards"></div>
+</section>
+
+<div id="cardModal" class="dialog">
+    <div class="dialog-content card-item no-bg">
+
+        <section class="flip-container">
+            <div class="flip-card" ng-click="flipCard($event.currentTarget)">
+                <div class="flip-front set-round bg-{{color}}-6" ng-class="{'card-bg': backgroundImage}">
+                    <div class="card-content">
+                        <div>&#9830;</div>
+                        <div>&#9830;</div>
+                        <div>&#9830;</div>
+                    </div>
+                </div>
+                <div class="flip-back set-round bg-{{color}}-6" ng-class="{'card-bg': backgroundImage}">
+                    <div class="card-content">
+                        <div class="card-text {{selectedCardIsEmoji ? 'card-emoji' : ''}}">
+                            {{selectedCard}}
+                        </div>
+                        <div class="card-description text-{{color}}-0">
+                            {{page.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button class="btn btn-icon btn-circle btn-lg text-white absolute right top" data-toggle="dialog">
+            <i class="md-icon">close</i>
+        </button>
+
+    </div>
+</div>
+
+<button class="btn btn-circle btn-xl btn-float raised-sm fixed right bottom bg-{{color}}-6" type="button" data-toggle="dialog" data-target="#addModal" data-focus="input" data-delay="400" ng-if="customCards">
+    <i class="md-icon">add</i>
+</button>
+
+<section class="pd-md flex flex-center" ng-if="!cards.length && customCards">
+    <div class="xs-text-center text-{{color}}-3 scale-lg no-select">
+        <div class="display-1">
+            <i class="md-icon md-icon-xl">content_copy</i>
+        </div>
+        <div class="subheader mg-top-sm">
+            {{'CARDS.NO_CARDS' | translate}}
+        </div>
+    </div>
+</section>
+
+<div id="addModal" class="dialog">
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <h1 class="title">{{'CARDS.ADD_MODAL.TITLE' | translate}}</h1>
+        </div>
+        <div class="dialog-body">
+            <input class="input input-{{color}}-6-f" type="text" maxlength="4" ng-model="newCard"/>
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-flat waves bg-{{color}}-6" type="submit" ng-click="addCard(newCard)">
+                {{'CARDS.ADD_MODAL.BUTTON_CONFIRM' | translate}}
+            </button>
+            <button class="btn btn-flat waves waves-dark" type="button" data-toggle="dialog">
+                {{'CARDS.ADD_MODAL.BUTTON_CANCEL' | translate}}
+            </button>
+        </div>
+    </div>
+</div>
