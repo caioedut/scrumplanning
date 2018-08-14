@@ -1,11 +1,12 @@
 # Scrum Planning #
-Android app using Cordova and CEMaterial
+Android app using Cordova, AngularJS and CEMaterial
 
 ## Play Store ##
 https://play.google.com/store/apps/details?id=com.caioedut.scrumplanning
 
 ## Libraries ##
 * Cordova: https://cordova.apache.org/
+* AngularJS: https://angularjs.org/
 * CEMaterial: https://github.com/caioedut/cematerial
 
 ## How To ##
