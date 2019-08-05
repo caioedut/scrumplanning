@@ -94,6 +94,7 @@
                 templateUrl: 'page/settings/settings.html'
             }
         },
+        /** GOOGLE APP STORE NÃO PERMITE USAR :\
         {
             name: 'DONATE.TITLE',
             sref: 'donate',
@@ -106,6 +107,7 @@
                 templateUrl: 'page/donate/donate.html'
             }
         }
+         **/
     ]);
 
 })();
